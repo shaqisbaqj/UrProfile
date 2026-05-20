@@ -200,6 +200,13 @@ const PRICING = [
     ],
     bestFor: "Anyone who can't do a local shoot",
     borderClass: "border-dark/15",
+    useCases: [
+      { emoji: "🎓", title: "The College Senior", desc: "Sending your profile link with every application instead of hoping your resume stands out." },
+      { emoji: "💻", title: "The Freelancer", desc: "Standing out on crowded platforms where everyone looks identical on paper." },
+      { emoji: "🔄", title: "The Career Changer", desc: "Reintroducing yourself to a new industry without starting from zero." },
+      { emoji: "✨", title: "The Side Hustler", desc: "Turning your passion project into something people take seriously." },
+      { emoji: "🌱", title: "The Recent Grad", desc: "Making your first impression before you have years of experience to show." },
+    ],
   },
   {
     name: "Starter",
@@ -213,6 +220,13 @@ const PRICING = [
     ],
     bestFor: "College students, early career professionals",
     borderClass: "border-dark/20",
+    useCases: [
+      { emoji: "🏢", title: "The Small Business Owner", desc: "Competing for local contracts against companies twice your size." },
+      { emoji: "🏠", title: "The Real Estate Agent", desc: "Building trust with buyers and sellers before the first showing." },
+      { emoji: "💪", title: "The Personal Trainer", desc: "Converting consultations faster when clients already believe in you." },
+      { emoji: "❤️", title: "The Nonprofit Leader", desc: "Connecting with donors emotionally before they ever see your financials." },
+      { emoji: "✝️", title: "The Minister", desc: "Presenting yourself to a new congregation or district with confidence and clarity." },
+    ],
   },
   {
     name: "Signature",
@@ -227,6 +241,13 @@ const PRICING = [
     ],
     bestFor: "Service providers, consultants, sales professionals, ministers",
     borderClass: "border-ember",
+    useCases: [
+      { emoji: "🔧", title: "The Service Provider", desc: "Closing estimates faster because the homeowner already trusts you before you knock." },
+      { emoji: "📊", title: "The Consultant", desc: "Walking into a pitch where the client already knows why you're the right choice." },
+      { emoji: "💰", title: "The Financial Advisor", desc: "Starting every client relationship three steps ahead of where you'd normally begin." },
+      { emoji: "🤝", title: "The Sales Professional", desc: "Opening doors that used to stay closed because nobody knew who you were." },
+      { emoji: "⛪", title: "The Pastor", desc: "Letting your calling speak before you ever step behind a pulpit." },
+    ],
   },
   {
     name: "Executive",
@@ -243,6 +264,13 @@ const PRICING = [
     ],
     bestFor: "Executives, corporations, institutional clients",
     borderClass: "border-dark/40",
+    useCases: [
+      { emoji: "👔", title: "The C-Suite Executive", desc: "A personal brand that matches the level you've already reached professionally." },
+      { emoji: "🏛️", title: "The Government Contractor", desc: "Proposals that feel like an introduction to a person, not a submission to a committee." },
+      { emoji: "🎤", title: "The Keynote Speaker", desc: "Walking onto every stage already known by everyone in the room." },
+      { emoji: "🏢", title: "The Corporate Team", desc: "Consistent professional presence across your entire leadership team." },
+      { emoji: "🗳️", title: "The Political Candidate", desc: "Making your first impression at scale before you shake a single hand." },
+    ],
   },
 ];
 
@@ -753,6 +781,57 @@ export default function Home() {
               Book your profile &rarr;
             </Link>
           </FadeUp>
+        </div>
+      </section>
+
+      {/* ─── 7b. Use Cases ─────────────────────────────────────────────── */}
+      <section className="bg-cream py-24 sm:py-40 px-8 sm:px-12">
+        <div className="max-w-7xl mx-auto">
+
+          <FadeUp>
+            <p className="font-body text-[10px] tracking-[0.3em] uppercase text-dark/25 mb-16">
+              Who each tier is for
+            </p>
+          </FadeUp>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 sm:gap-x-8 lg:gap-x-12 gap-y-16">
+            {PRICING.map((tier, i) => (
+              <FadeUp key={tier.name} delay={i * 0.1}>
+                <div className={`pt-8 border-t-2 ${tier.borderClass}`}>
+                  <p className="font-body text-[10px] tracking-[0.25em] uppercase text-dark/30 mb-1">
+                    {tier.name}
+                  </p>
+                  <p className="font-display font-light text-dark text-2xl mb-8">
+                    {tier.price}
+                  </p>
+
+                  <div className="space-y-6">
+                    {tier.useCases.map((uc, j) => (
+                      <motion.div
+                        key={j}
+                        initial={{ opacity: 0, x: -8 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, margin: "-40px" }}
+                        transition={{ delay: i * 0.06 + j * 0.05, duration: 0.6, ease: EASE }}
+                      >
+                        <div className="flex items-start gap-3">
+                          <span className="text-base leading-none shrink-0 mt-0.5">{uc.emoji}</span>
+                          <div>
+                            <p className="font-body text-sm text-dark font-medium leading-snug mb-1">
+                              {uc.title}
+                            </p>
+                            <p className="font-body text-xs text-dark/45 leading-relaxed italic">
+                              &ldquo;{uc.desc}&rdquo;
+                            </p>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </FadeUp>
+            ))}
+          </div>
         </div>
       </section>
 
