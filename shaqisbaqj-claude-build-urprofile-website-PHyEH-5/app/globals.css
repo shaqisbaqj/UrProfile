@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ember: #C4622D;
+  --cream: #F5F0E8;
+  --dark: #1C1A18;
+  --sand: #C9B99A;
+  --linen: #E0D4C0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto; /* Lenis handles this */
+}
+
+body {
+  background: var(--cream);
+  color: var(--dark);
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hide system cursor on pointer devices — custom cursor takes over */
+@media (hover: hover) and (pointer: fine) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .font-display {
+    font-family: var(--font-cormorant), Georgia, serif;
+  }
+}
+
+/* Mux player */
+mux-player {
+  width: 100%;
+  aspect-ratio: 9/16;
+  display: block;
+}
+
+/* GPU hints for animated elements */
+.will-animate {
+  will-change: transform, opacity;
+}
