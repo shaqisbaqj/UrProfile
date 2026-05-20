@@ -207,93 +207,6 @@ const FAQS = [
   },
 ];
 
-const PRICING = [
-  {
-    name: "Self Guided",
-    price: "$299",
-    popular: false,
-    features: [
-      "AI story interview",
-      "Personalized shot list",
-      "Professional edit by UrProfile",
-      "Profile page live on UrProfile",
-      "One NFC card shipped",
-    ],
-    bestFor: "Anyone who can't do a local shoot",
-    borderClass: "border-dark/15",
-    useCases: [
-      { emoji: "🎓", title: "The College Senior", desc: "Sending your profile link with every application instead of hoping your resume stands out." },
-      { emoji: "💻", title: "The Freelancer", desc: "Standing out on crowded platforms where everyone looks identical on paper." },
-      { emoji: "🔄", title: "The Career Changer", desc: "Reintroducing yourself to a new industry without starting from zero." },
-      { emoji: "✨", title: "The Side Hustler", desc: "Turning your passion project into something people take seriously." },
-      { emoji: "🌱", title: "The Recent Grad", desc: "Making your first impression before you have years of experience to show." },
-    ],
-  },
-  {
-    name: "Starter",
-    price: "$599",
-    popular: false,
-    features: [
-      "45 second profile film",
-      "Profile page live on UrProfile",
-      "Digital share link",
-      "QR code included",
-    ],
-    bestFor: "College students, early career professionals",
-    borderClass: "border-dark/20",
-    useCases: [
-      { emoji: "🏢", title: "The Small Business Owner", desc: "Competing for local contracts against companies twice your size." },
-      { emoji: "🏠", title: "The Real Estate Agent", desc: "Building trust with buyers and sellers before the first showing." },
-      { emoji: "💪", title: "The Personal Trainer", desc: "Converting consultations faster when clients already believe in you." },
-      { emoji: "❤️", title: "The Nonprofit Leader", desc: "Connecting with donors emotionally before they ever see your financials." },
-      { emoji: "✝️", title: "The Minister", desc: "Presenting yourself to a new congregation or district with confidence and clarity." },
-    ],
-  },
-  {
-    name: "Signature",
-    price: "$999",
-    popular: true,
-    features: [
-      "90 second profile film",
-      "Profile page live on UrProfile",
-      "Two branded NFC cards",
-      "Custom profile URL",
-      "LinkedIn optimization guide",
-    ],
-    bestFor: "Service providers, consultants, sales professionals, ministers",
-    borderClass: "border-ember",
-    useCases: [
-      { emoji: "🔧", title: "The Service Provider", desc: "Closing estimates faster because the homeowner already trusts you before you knock." },
-      { emoji: "📊", title: "The Consultant", desc: "Walking into a pitch where the client already knows why you're the right choice." },
-      { emoji: "💰", title: "The Financial Advisor", desc: "Starting every client relationship three steps ahead of where you'd normally begin." },
-      { emoji: "🤝", title: "The Sales Professional", desc: "Opening doors that used to stay closed because nobody knew who you were." },
-      { emoji: "⛪", title: "The Pastor", desc: "Letting your calling speak before you ever step behind a pulpit." },
-    ],
-  },
-  {
-    name: "Executive",
-    price: "$2,499",
-    popular: false,
-    features: [
-      "2–3 minute profile film",
-      "Profile page live on UrProfile",
-      "Four branded NFC cards",
-      "Custom profile URL",
-      "Testimonial capture segment",
-      "Team profile option",
-      "Headshots included",
-    ],
-    bestFor: "Executives, corporations, institutional clients",
-    borderClass: "border-dark/40",
-    useCases: [
-      { emoji: "👔", title: "The C-Suite Executive", desc: "A personal brand that matches the level you've already reached professionally." },
-      { emoji: "🏛️", title: "The Government Contractor", desc: "Proposals that feel like an introduction to a person, not a submission to a committee." },
-      { emoji: "🎤", title: "The Keynote Speaker", desc: "Walking onto every stage already known by everyone in the room." },
-      { emoji: "🏢", title: "The Corporate Team", desc: "Consistent professional presence across your entire leadership team." },
-      { emoji: "🗳️", title: "The Political Candidate", desc: "Making your first impression at scale before you shake a single hand." },
-    ],
-  },
-];
 
 // ─── FAQ Accordion Item ────────────────────────────────────────────────────
 function FAQItem({ q, a }: { q: string; a: string }) {
@@ -392,7 +305,7 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2, duration: 1 }}
           >
-            Premium Concierge Video Profile
+            The First Impression — $500
           </motion.p>
 
           {/* Tagline — line by line clip reveal */}
@@ -596,99 +509,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── 5. Two Ways section ───────────────────────────────────────── */}
-      <section className="bg-cream py-40 sm:py-56 px-8 sm:px-12">
-        <div className="max-w-7xl mx-auto mb-16">
-          <FadeUp>
-            <p className="font-body text-[10px] tracking-[0.3em] uppercase text-dark/25 mb-6">
-              Get started
-            </p>
-          </FadeUp>
-          <Reveal>
-            <h2 className="font-display font-light text-dark text-[clamp(2rem,4.5vw,4rem)] leading-[1.05]">
-              Two ways to get your profile.
-            </h2>
-          </Reveal>
-        </div>
-
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-0">
-          {/* Card 1 — Self Guided */}
-          <FadeUp delay={0.05}>
-            <div className="relative min-h-[400px] p-12 sm:p-16 bg-dark flex flex-col justify-between overflow-hidden">
-              {/* Ember accent line */}
-              <div className="absolute top-0 left-0 right-0 h-[2px] bg-ember" />
-              {/* Background image */}
-              <div className="absolute inset-0 z-0">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&q=80&fit=crop"
-                  alt=""
-                  aria-hidden
-                  className="w-full h-full object-cover opacity-0 transition-opacity duration-700"
-                  onLoad={(e) => { (e.target as HTMLImageElement).style.opacity = '0.2'; }}
-                />
-              </div>
-              {/* Content */}
-              <div className="relative z-10">
-                <p className="font-body text-[10px] tracking-[0.3em] uppercase text-cream/25 mb-8">
-                  Remote — $299
-                </p>
-                <h3 className="font-display font-light text-cream text-[clamp(1.8rem,3.5vw,3rem)] leading-tight mb-6">
-                  Film it yourself. We edit it.
-                </h3>
-                <p className="font-body text-sm text-cream/45 leading-relaxed max-w-sm">
-                  Our AI interviews you, builds your shot list, and tells you exactly what to film. Upload your clips. We handle the rest.
-                </p>
-              </div>
-              <div className="relative z-10 mt-10">
-                <Link
-                  href="/self-guided"
-                  className="font-body text-xs tracking-[0.22em] uppercase text-cream/50 hover:text-cream transition-colors duration-300"
-                >
-                  Get Started &rarr;
-                </Link>
-              </div>
-            </div>
-          </FadeUp>
-
-          {/* Card 2 — Concierge */}
-          <FadeUp delay={0.1}>
-            <div className="relative min-h-[400px] p-12 sm:p-16 bg-ember flex flex-col justify-between overflow-hidden">
-              {/* Background image */}
-              <div className="absolute inset-0 z-0">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&q=80&fit=crop"
-                  alt=""
-                  aria-hidden
-                  className="w-full h-full object-cover opacity-0 transition-opacity duration-700"
-                  onLoad={(e) => { (e.target as HTMLImageElement).style.opacity = '0.15'; }}
-                />
-              </div>
-              {/* Content */}
-              <div className="relative z-10">
-                <p className="font-body text-[10px] tracking-[0.3em] uppercase text-cream/40 mb-8">
-                  Concierge — From $599
-                </p>
-                <h3 className="font-display font-light text-cream text-[clamp(1.8rem,3.5vw,3rem)] leading-tight mb-6">
-                  We come to you.
-                </h3>
-                <p className="font-body text-sm text-cream/70 leading-relaxed max-w-sm">
-                  A creative director comes to your location. Half a day. We capture everything — you just show up.
-                </p>
-              </div>
-              <div className="relative z-10 mt-10">
-                <Link
-                  href="/book"
-                  className="font-body text-xs tracking-[0.22em] uppercase text-cream/60 hover:text-cream transition-colors duration-300"
-                >
-                  Book Your Shoot &rarr;
-                </Link>
-              </div>
-            </div>
-          </FadeUp>
-        </div>
-      </section>
 
       {/* ─── 6. Who it's for ───────────────────────────────────────────── */}
       <section className="bg-cream py-40 sm:py-56 px-8 sm:px-12">
@@ -753,119 +573,61 @@ export default function Home() {
             </p>
           </FadeUp>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-0 sm:gap-8 lg:gap-12">
-            {PRICING.map((tier, i) => (
-              <FadeUp key={tier.name} delay={i * 0.1}>
-                <div className={`pt-8 border-t-2 ${tier.borderClass} mt-12 sm:mt-0`}>
-                  {/* Popular label */}
-                  {tier.popular ? (
-                    <p className="font-body text-[9px] tracking-[0.3em] uppercase text-ember mb-4">
-                      Most popular
-                    </p>
-                  ) : (
-                    <div className="h-[1.375rem] mb-4" />
-                  )}
+          <div className="max-w-lg">
+            <FadeUp delay={0.05}>
+              <p className="font-body text-[10px] tracking-[0.25em] uppercase text-cream/30 mb-6">
+                The First Impression
+              </p>
+            </FadeUp>
 
-                  <p className="font-body text-[10px] tracking-[0.25em] uppercase text-cream/30 mb-3">
-                    {tier.name}
-                  </p>
+            <div className="overflow-hidden mb-12">
+              <motion.p
+                className="font-display font-light text-cream leading-none text-[clamp(5rem,12vw,10rem)]"
+                initial={{ y: "105%" }}
+                whileInView={{ y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, ease: EASE }}
+              >
+                $500
+              </motion.p>
+            </div>
 
-                  <div className="overflow-hidden mb-8">
-                    <motion.p
-                      className="font-display font-light text-cream leading-none text-[clamp(2.2rem,4vw,4.5rem)]"
-                      initial={{ y: "105%" }}
-                      whileInView={{ y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.1 + 0.2, duration: 1, ease: EASE }}
-                    >
-                      {tier.price}
-                    </motion.p>
+            <FadeUp delay={0.1}>
+              <div className="space-y-4 mb-10">
+                {[
+                  "We come to you",
+                  "60–90 second profile film",
+                  "Profile page live on UrProfile",
+                  "One NFC card shipped to your door",
+                  "QR code included",
+                  "Within 50 miles of Lusby, MD",
+                ].map((f) => (
+                  <div key={f} className="flex items-start gap-4">
+                    <span className="w-1 h-1 bg-ember block shrink-0 mt-2.5" />
+                    <p className="font-body text-base text-cream/50 leading-relaxed">{f}</p>
                   </div>
+                ))}
+              </div>
+            </FadeUp>
 
-                  <div className="space-y-3 mb-8">
-                    {tier.features.map((f) => (
-                      <div key={f} className="flex items-start gap-3">
-                        <span className="w-1 h-1 bg-ember block shrink-0 mt-2" />
-                        <p className="font-body text-sm text-cream/45 leading-relaxed">{f}</p>
-                      </div>
-                    ))}
-                  </div>
+            <FadeUp delay={0.15}>
+              <p className="font-body text-sm text-cream/25 mb-12">
+                Add-on: Additional NFC cards $25 each
+              </p>
+            </FadeUp>
 
-                  <p className="font-body text-[10px] tracking-[0.15em] uppercase text-cream/20 leading-relaxed">
-                    Best for: {tier.bestFor}
-                  </p>
-                </div>
-              </FadeUp>
-            ))}
-          </div>
-
-          <FadeUp delay={0.1} className="mt-20 pt-12 border-t border-white/[0.06]">
-            <p className="font-body text-sm text-cream/25">
-              Additional NFC cards $25 each &middot; Travel beyond 50 miles of Lusby, MD — contact for quote
-            </p>
-          </FadeUp>
-
-          <FadeUp delay={0.15} className="mt-10">
-            <Link
-              href="/book"
-              className="font-body text-xs tracking-[0.22em] uppercase text-cream/50 hover:text-ember transition-colors duration-300"
-            >
-              Book your profile &rarr;
-            </Link>
-          </FadeUp>
-        </div>
-      </section>
-
-      {/* ─── 7b. Use Cases ─────────────────────────────────────────────── */}
-      <section className="bg-cream py-24 sm:py-40 px-8 sm:px-12">
-        <div className="max-w-7xl mx-auto">
-
-          <FadeUp>
-            <p className="font-body text-[10px] tracking-[0.3em] uppercase text-dark/25 mb-16">
-              Who each tier is for
-            </p>
-          </FadeUp>
-
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 sm:gap-x-8 lg:gap-x-12 gap-y-16">
-            {PRICING.map((tier, i) => (
-              <FadeUp key={tier.name} delay={i * 0.1}>
-                <div className={`pt-8 border-t-2 ${tier.borderClass}`}>
-                  <p className="font-body text-[10px] tracking-[0.25em] uppercase text-dark/30 mb-1">
-                    {tier.name}
-                  </p>
-                  <p className="font-display font-light text-dark text-2xl mb-8">
-                    {tier.price}
-                  </p>
-
-                  <div className="space-y-6">
-                    {tier.useCases.map((uc, j) => (
-                      <motion.div
-                        key={j}
-                        initial={{ opacity: 0, x: -8 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: "-40px" }}
-                        transition={{ delay: i * 0.06 + j * 0.05, duration: 0.6, ease: EASE }}
-                      >
-                        <div className="flex items-start gap-3">
-                          <span className="text-base leading-none shrink-0 mt-0.5">{uc.emoji}</span>
-                          <div>
-                            <p className="font-body text-sm text-dark font-medium leading-snug mb-1">
-                              {uc.title}
-                            </p>
-                            <p className="font-body text-xs text-dark/45 leading-relaxed italic">
-                              &ldquo;{uc.desc}&rdquo;
-                            </p>
-                          </div>
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-              </FadeUp>
-            ))}
+            <FadeUp delay={0.2}>
+              <Link
+                href="/book"
+                className="inline-block font-body text-xs tracking-[0.22em] uppercase bg-ember text-cream px-10 py-5 hover:bg-ember/85 transition-colors duration-300"
+              >
+                Book Now &rarr;
+              </Link>
+            </FadeUp>
           </div>
         </div>
       </section>
+
 
       {/* ─── 7c. Testimonials ──────────────────────────────────────────── */}
       <section className="bg-dark py-40 sm:py-56 px-8 sm:px-12">
