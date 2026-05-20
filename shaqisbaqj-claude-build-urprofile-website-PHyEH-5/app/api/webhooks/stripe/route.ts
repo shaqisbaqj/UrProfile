@@ -1,4 +1,5 @@
 import Stripe from "stripe";
+import { sendBookingConfirmationEmail } from "@/lib/email";
 
 export async function POST(req: Request) {
   const stripeKey = process.env.STRIPE_SECRET_KEY;
@@ -23,8 +24,21 @@ export async function POST(req: Request) {
     const session = event.data.object as Stripe.Checkout.Session;
     const { tier, name, email } = session.metadata ?? {};
 
-    // TODO Phase 2: create Supabase auth user, insert order record, send welcome email
     console.log("✓ Payment completed:", { tier, name, email, sessionId: session.id });
+
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://urprofile.co";
+    const interviewUrl = `${appUrl}/interview?session=${session.id}`;
+
+    if (email && name) {
+      await sendBookingConfirmationEmail({
+        name,
+        email,
+        tier: tier || "Unknown",
+        interviewUrl,
+      });
+    }
+
+    // TODO Phase 2: create Supabase auth user, insert order record
   }
 
   return new Response("OK", { status: 200 });

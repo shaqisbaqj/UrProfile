@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import {
   motion,
@@ -157,6 +157,27 @@ const PORTRAITS = [
   { src: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&q=80&fit=crop&crop=face", alt: "Professional" },
   { src: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&q=80&fit=crop&crop=face", alt: "Professional" },
   { src: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80&fit=crop&crop=face", alt: "Professional" },
+];
+
+const DEMO_TESTIMONIALS = [
+  {
+    id: "demo-1",
+    body: "I used to spend the first 20 minutes of every client meeting explaining who I am. Now they already know. Three prospects signed before we ever sat down.",
+    name: "Marcus T.",
+    role: "Financial Advisor",
+  },
+  {
+    id: "demo-2",
+    body: "I sent my profile link before every showing for a month. My close rate changed. People showed up ready to trust me instead of ready to evaluate me.",
+    name: "Sarah K.",
+    role: "Real Estate Agent",
+  },
+  {
+    id: "demo-3",
+    body: "Our board presentations used to start with introductions. Now they start with my profile. It changed the energy in the room before I said a word.",
+    name: "David R.",
+    role: "Nonprofit Director",
+  },
 ];
 
 const FAQS = [
@@ -323,6 +344,17 @@ export default function Home() {
     offset: ["start end", "end start"],
   });
   const imageY = useTransform(featureScroll, [0, 1], ["-6%", "6%"]);
+
+  // Live testimonials (falls back to demo data when DB not configured)
+  const [testimonials, setTestimonials] = useState(DEMO_TESTIMONIALS);
+  useEffect(() => {
+    fetch("/api/testimonials")
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.testimonials?.length > 0) setTestimonials(data.testimonials);
+      })
+      .catch(() => {});
+  }, []);
 
   return (
     <>
@@ -832,6 +864,46 @@ export default function Home() {
               </FadeUp>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ─── 7c. Testimonials ──────────────────────────────────────────── */}
+      <section className="bg-dark py-40 sm:py-56 px-8 sm:px-12">
+        <div className="max-w-7xl mx-auto">
+
+          <FadeUp>
+            <p className="font-body text-[10px] tracking-[0.3em] uppercase text-cream/20 mb-20">
+              What our clients say
+            </p>
+          </FadeUp>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 sm:gap-12 lg:gap-16 mb-20">
+            {testimonials.slice(0, 3).map((t, i) => (
+              <FadeUp key={t.id} delay={i * 0.1}>
+                <div className="pt-8 border-t border-white/[0.08] md:border-t-0 mt-12 md:mt-0 md:pt-0">
+                  <div className="w-6 h-px bg-ember mb-8" />
+                  <blockquote className="font-display font-light text-cream italic leading-[1.55] text-[clamp(1.05rem,1.8vw,1.3rem)] mb-8">
+                    &ldquo;{t.body}&rdquo;
+                  </blockquote>
+                  <p className="font-body text-xs tracking-[0.18em] uppercase text-cream/35">
+                    {t.name}
+                  </p>
+                  {t.role && (
+                    <p className="font-body text-xs text-cream/20 mt-1">{t.role}</p>
+                  )}
+                </div>
+              </FadeUp>
+            ))}
+          </div>
+
+          <FadeUp delay={0.15}>
+            <Link
+              href="/testimonials/submit"
+              className="font-body text-xs tracking-[0.22em] uppercase text-cream/30 hover:text-ember transition-colors duration-300"
+            >
+              Worked with us? Share your experience &rarr;
+            </Link>
+          </FadeUp>
         </div>
       </section>
 
