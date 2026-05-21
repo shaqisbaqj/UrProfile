@@ -5,15 +5,6 @@ import { useRouter } from "next/navigation";
 import Nav from "@/components/Nav";
 import ContractModal from "@/components/ContractModal";
 
-const TIERS = [
-  { id: "self-guided", label: "Self Guided", price: "$299" },
-  { id: "starter",     label: "Starter",     price: "$599" },
-  { id: "signature",   label: "Signature",   price: "$999",  popular: true },
-  { id: "executive",   label: "Executive",   price: "$2,499" },
-] as const;
-
-type TierId = typeof TIERS[number]["id"];
-
 interface FormValues {
   name: string;
   email: string;
@@ -24,7 +15,6 @@ interface FormValues {
 
 export default function BookPage() {
   const router = useRouter();
-  const [tier, setTier] = useState<TierId>("signature");
   const [form, setForm] = useState<FormValues>({
     name: "", email: "", phone: "", industry: "", message: "",
   });
@@ -48,7 +38,7 @@ export default function BookPage() {
   async function handleSign({ name, timestamp }: { name: string; timestamp: string }) {
     setShowContract(false);
     setLoading(true);
-    console.log("Contract signed:", { name, timestamp, tier });
+    console.log("Contract signed:", { name, timestamp });
 
     try {
       const origin = window.location.origin;
@@ -56,7 +46,6 @@ export default function BookPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          tier,
           name: form.name,
           email: form.email,
           successUrl: `${origin}/book/success`,
@@ -76,8 +65,6 @@ export default function BookPage() {
     }
   }
 
-  const selectedTier = TIERS.find((t) => t.id === tier)!;
-
   const inputClass =
     "w-full bg-transparent border border-dark/15 focus:border-ember outline-none px-5 py-4 font-body text-sm text-dark placeholder:text-dark/25 transition-colors duration-200";
   const labelClass =
@@ -92,43 +79,13 @@ export default function BookPage() {
 
           {/* Header */}
           <p className="font-body text-[10px] tracking-[0.3em] uppercase text-dark/25 mb-8">
-            Book your profile
+            The First Impression — $500
           </p>
           <h1 className="font-display font-light text-dark text-[clamp(2.8rem,6vw,5rem)] leading-tight mb-16">
             Let&apos;s make
             <br />
             <em className="text-ember not-italic">your profile.</em>
           </h1>
-
-          {/* Tier selector */}
-          <div className="mb-14">
-            <p className={labelClass}>Select your package</p>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-0">
-              {TIERS.map((t) => (
-                <button
-                  key={t.id}
-                  onClick={() => setTier(t.id)}
-                  className={`relative text-left px-4 py-5 border-t-2 transition-all duration-200 ${
-                    tier === t.id
-                      ? "border-ember bg-dark/[0.03]"
-                      : "border-dark/10 hover:border-dark/25"
-                  }`}
-                >
-                  {(t as typeof t & { popular?: boolean }).popular && (
-                    <span className="absolute top-2 right-2 font-body text-[8px] tracking-[0.2em] uppercase text-ember">
-                      Popular
-                    </span>
-                  )}
-                  <p className="font-body text-[10px] tracking-[0.2em] uppercase text-dark/40 mb-1">
-                    {t.label}
-                  </p>
-                  <p className="font-display font-light text-dark text-xl leading-none">
-                    {t.price}
-                  </p>
-                </button>
-              ))}
-            </div>
-          </div>
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -200,7 +157,7 @@ export default function BookPage() {
             {/* Location note */}
             <div className="border-l-2 border-ember/40 pl-4">
               <p className="font-body text-xs text-dark/35 leading-relaxed">
-                Base package covers shoots within 50 miles of Lusby, MD.
+                We come to you within 50 miles of Lusby, MD.
                 Travel beyond 50 miles available — contact us for a quote.
               </p>
             </div>
@@ -253,8 +210,8 @@ export default function BookPage() {
         isOpen={showContract}
         onClose={() => setShowContract(false)}
         onSign={handleSign}
-        tier={selectedTier.label}
-        price={selectedTier.price}
+        tier="The First Impression"
+        price="$500"
       />
     </>
   );
